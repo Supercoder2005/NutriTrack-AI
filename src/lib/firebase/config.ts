@@ -2,14 +2,16 @@ import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getAuth, Auth } from "firebase/auth";
 import { getFirestore, Firestore } from "firebase/firestore";
 import { getStorage, FirebaseStorage } from "firebase/storage";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyDIDjX8_oTtTUPTvd2PeKSkOkwQBEnE-l0",
+  authDomain: "nutritrack-ai-46286.firebaseapp.com",
+  projectId: "nutritrack-ai-46286",
+  storageBucket: "nutritrack-ai-46286.appspot.com",
+  messagingSenderId: "982936246412",
+  appId: "1:982936246412:web:20c50c047e55d788fd83a9",
+  measurementId: "G-172RBFG0YH"
 };
 
 // Initialize Firebase
@@ -17,5 +19,11 @@ const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : get
 const auth: Auth = getAuth(app);
 const db: Firestore = getFirestore(app);
 const storage: FirebaseStorage = getStorage(app);
+
+// Initialize Analytics if running in the browser
+if (typeof window !== 'undefined') {
+  getAnalytics(app);
+}
+
 
 export { app, auth, db, storage };
